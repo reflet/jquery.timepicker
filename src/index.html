@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset='utf-8'>
+  <title>jQuery.Timepickerを使ってみる</title>
+  <link rel="stylesheet" type="text/css" href="./css/lib/ui-lightness/jquery-ui-1.8.18.custom.css" />
+  <link rel="stylesheet" type="text/css" href="./css/lib/jquery.timepicker.css" />
+  <link rel="stylesheet" type="text/css" href="./css/lib/rainbow.css" />
+  <link rel="stylesheet" type="text/css" href="./css/sample.css" />
+</head>
+<body>
+
+  <div id="container">
+    <!-- Basic Example -->
+    <div class="example">
+      <h3>Basic Example</h3>
+      <p><input id="basicExample" type="text" class="time" /></p>
+    </div>
+
+    <!-- Basic Example -->
+    <div class="example">
+      <h3>Scroll Default Example</h3>
+      <p><input id="defaultValueExample" type="text" class="time" /></p>
+    </div>
+    <div class="example">
+      <h3>Set Time Example</h3>
+      <p>
+        <input id="setTimeExample" type="text" class="time" />
+        <button id="setTimeButton">Set current time</button>
+      </p>
+    </div>
+
+    <!-- Duration Example -->
+    <div class="example">
+      <h3>Duration Example</h3>
+      <p>
+        <input id="durationExample" type="text" class="time" />
+      </p>
+    </div>
+
+    <!-- onSelect Example -->
+    <div class="example">
+      <h3>onSelect Example</h3>
+      <p>
+        <input id="onselectExample" type="text" class="time" />
+        <span id="onselectTarget" style="margin-left: 30px;"></span>
+      </p>
+    </div>
+
+    <!-- timeFormat Example -->
+    <div class="example">
+      <h3>timeFormat Example</h3>
+      <p>
+        <input id="timeformatExample1" type="text" class="time" /> <input id="timeformatExample2" type="text" class="time" />
+      </p>
+    </div>
+
+    <!-- Step Example -->
+    <div class="example">
+      <h3>Step Example</h3>
+      <p>
+        <input id="stepExample1" type="text" class="time" /> <input id="stepExample2" type="text" class="time" />
+      </p>
+    </div>
+
+    <!-- Select Example -->
+    <div class="example">
+      <h3>Select Example</h3>
+      <p>
+        <select id="selectExample" class="time">
+          <option value="12:00am">12:00am</option>
+          <option value="1:00am">1:00am</option>
+          <option value="2:00am">2:00am</option>
+          <option value="3:00am">3:00am</option>
+          <option value="4:00am">4:00am</option>
+          <option value="5:00am">5:00am</option>
+          <option value="6:00am">6:00am</option>
+          <option value="7:00am">7:00am</option>
+          <option value="8:00am">8:00am</option>
+          <option value="9:00am">9:00am</option>
+          <option value="10:00am">10:00am</option>
+          <option value="11:00am">11:00am</option>
+          <option value="12:00pm">12:00pm</option>
+          <option value="1:00pm">1:00pm</option>
+          <option value="2:00pm">2:00pm</option>
+          <option value="3:00pm">3:00pm</option>
+          <option value="4:00pm">4:00pm</option>
+          <option value="5:00pm">5:00pm</option>
+          <option value="6:00pm">6:00pm</option>
+          <option value="7:00pm">7:00pm</option>
+          <option value="8:00pm">8:00pm</option>
+          <option value="9:00pm">9:00pm</option>
+          <option value="10:00pm">10:00pm</option>
+          <option value="11:00pm">11:00pm</option>
+        </select>
+        <button id="selectButton">Convert to timepicker</button>
+      </p>
+    </div>
+
+    <!-- Datepair Example -->
+    <div class="example">
+      <h3>Datepair Example</h3>
+      <p class="datepair" data-language="javascript">
+        <input type="text" class="date start" />
+        <input type="text" class="time start" /> ～
+        <input type="text" class="date end" />
+        <input type="text" class="time end" />
+      </p>
+    </div>
+    
+    <br /><br />
+  </div>
+
+  <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/lib/jquery-ui-1.8.18.custom.min.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.timepicker.js"></script>
+  <script type="text/javascript" src="js/lib/rainbow.js"></script>
+  <script type="text/javascript" src="js/lib/datepair.js"></script>
+  <script>
+    $(function() {
+      $('#basicExample').timepicker();
+
+      $('#defaultValueExample').timepicker({
+        'scrollDefaultNow': true
+      });
+
+      $('#setTimeExample').timepicker();
+      $('#setTimeButton').bind('click', function (){
+        $('#setTimeExample').timepicker('setTime', new Date());
+      });
+
+      $('#durationExample').timepicker({
+        'minTime'     : '2:00pm',
+        'maxTime'     : '11:30pm',
+        'showDuration': true
+      });
+
+      $('#onselectExample').timepicker({
+        'onSelect': function() {
+          $('#onselectTarget').text($(this).val());
+        }
+      });
+
+      $('#timeformatExample1').timepicker({
+        'timeFormat': 'H:i:s'
+      });
+      
+      $('#timeformatExample2').timepicker({
+        'timeFormat': 'h:i A'
+      });
+
+      $('#stepExample1').timepicker({ 'step': 15 });
+      $('#stepExample2').timepicker({ 'step': 60 });
+
+      $('#selectButton').click(function(e) {
+        e.preventDefault();
+        $('#selectExample').timepicker();
+        $(this).hide();
+      });
+    });
+  </script>
+</body>
+</html>
